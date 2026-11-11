@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.roshan.lab11_roshan.OrderController"
+            prefWidth="480" prefHeight="420">
+
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Place Order" onAction="#handlePlaceOrder"/>
+                <MenuItem text="Clear Order" onAction="#handleClearOrder"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="Edit">
+                <MenuItem text="Entrée" onAction="#handleClearEntree"/>
+                <MenuItem text="Drink" onAction="#handleClearDrink"/>
+                <MenuItem text="Special Request" onAction="#handleClearSpecial"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About" onAction="#handleAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+
+            <HBox spacing="12">
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Entrée Selection" style="-fx-font-weight: bold;"/>
+                    <ListView fx:id="entreeListView" prefHeight="110"/>
+                </VBox>
+
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Drink Selection" style="-fx-font-weight: bold;"/>
+                    <fx:define>
+                        <ToggleGroup fx:id="drinkGroup"/>
+                    </fx:define>
+                    <RadioButton fx:id="coffeeRadio" text="Coffee" toggleGroup="$drinkGroup"/>
+                    <RadioButton fx:id="teaRadio" text="Tea" toggleGroup="$drinkGroup"/>
+                    <RadioButton fx:id="sodaRadio" text="Soda" toggleGroup="$drinkGroup"/>
+                    <RadioButton fx:id="juiceRadio" text="Juice" toggleGroup="$drinkGroup"/>
+                </VBox>
+            </HBox>
+
+            <CheckBox fx:id="waterCheckBox" text="Request Free Water"/>
+
+            <VBox spacing="4">
+                <Label text="Special Requests" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="specialField" promptText="e.g. Hold the onion"/>
+            </VBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-border-color: lightgray; -fx-padding: 8;">
+                <Label fx:id="currentOrderLabel" text="Current Order:&#10;Total: $0.00"
+                       HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="Place Order" onAction="#handlePlaceOrder"/>
+                <Button text="Clear Order" onAction="#handleClearOrder"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
